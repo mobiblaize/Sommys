@@ -1,0 +1,142 @@
+<header>
+    <div class="container-fluid hero-text-box">
+        <h1 class="display-5">Your home for quality cakes and pasteries.</h1>
+        <button class="btn btn-sm btn-primary btn-full animate__flip" routerLink="/order" routerLinkActive="active">Place order</button>
+        <button class="btn btn-sm btn-outline-primary btn-ghost" (click)="toSection('about')">Show me more</button>
+    </div>
+</header>
+
+<section class="section-features js--section-features">
+    <div class="container">
+    <div class="row d-flex justify-content-center" id="about">
+        <h2>Welcome to Sommy's catering</h2>
+        <p class="long-copy col-sm-12 col-md-11 col-lg-9 col-lg-auto">We're dedicated to the principle of small top quality neighborhood products. You'll see it in our extravagant cake and breakfast pastries collection. You'll taste the attention we give to our organic ingredients in bringing you a heart warming final delicacy.</p>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-12 col-md-6 col-lg-4 float-lg-right about-box">
+            <div>
+                <i class="ion-ios-cart-outline icon-big"></i>
+                <h3>Place your order</h3>
+                <p>
+                Check out our gallery of pastries, place your order for one of our product and you won't be dissapointed. We only make the best.
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 float-lg-left about-box">
+            <div>
+                <i class="ion-ios-book-outline icon-big"></i>
+                <h3>Learn the steps</h3>
+                <p>
+                    Apply for our master course and learn the secret recipes for making various kinds of cakes, meat-pies, egg-rolls and other pastries.
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section class="section-testimonials">
+    <div class="container">
+        <div class="row"><h2>Our customers can't live without us</h2></div>
+        <div class="row">
+            <blockquote>
+                Sommy's catering is just so incomparable, I decided to give sommy's catering a trial for my birthday, I placed on order for my cake and in no distant time, my cake was delivered to me. The cake turned out to be even more sumptous than I expected and all of my friends really testified to its great taste.
+                <cite>Neche</cite>
+            </blockquote>
+        </div>
+    </div>  
+</section>
+
+<section class="section-form js--section-2">
+    <div class="row">
+        <h2>We're happy to hear from you</h2>
+    </div>
+    <div class="container">
+        <form [formGroup]="contactForm" class='contact-form col-xs-12 col-sm-12 col-md-10 col-lg-9' (ngSubmit)='onSubmit()'>
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <label for="name">Name</label>
+                </div>
+                <div class="col-sm-12 col-md-9">
+                    <input formControlName="name" 
+                    [class.is-invalid]="contactForm.get('name').invalid && contactForm.get('name').touched" 
+                    type="text" name="name" id="name" placeholder="Your name">
+                    <div *ngIf="contactForm.get('name').invalid && contactForm.get('name').touched">
+                        <small class="text-danger" *ngIf="contactForm.get('name').errors?.required">Name is required</small>
+                        <small class="text-danger" *ngIf="contactForm.get('name').errors?.minlength">Name must be at least 3 characters</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col-sm-12 col-md-9">
+                    <input formControlName="email"
+                    [class.is-invalid]="contactForm.get('email').invalid && contactForm.get('email').touched" 
+                    type="email" name="email" id="email" placeholder="Your email">
+                    <div *ngIf="contactForm.get('email').invalid && contactForm.get('email').touched">
+                        <small class="text-danger" *ngIf="contactForm.get('email').errors?.required">Email is required</small>
+                        <small class="text-danger" *ngIf="contactForm.get('email').errors?.pattern">Enter a valid email</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <label for="find-us">How did you find us?</label>
+                </div>
+                <div class="col-sm-12 col-md-9">
+                    <select formControlName="findUs" name="find-us" id="find-us">
+                        <option value="friends">Friends</option>
+                        <option value="search">Search engine</option>
+                        <option value="ad">Advertisement</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <label>Newsletter</label>
+                </div>
+                <div class="col-sm-12 col-md-9">
+                    <input formControlName="news" type="checkbox" name="news" id="news" checked>Yes, please
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <label>Drop us a line</label>
+                </div>
+                <div class="col-sm-12 col-md-9">
+                    <textarea formControlName="message" name="message" placeholder="Your message"></textarea>
+                    <small class="text-danger" 
+                    [class.d-none]="contactForm.get('message').valid || contactForm.get('message').untouched">
+                    You haven't written your message</small>
+                </div>
+            </div>
+            <div class="row" *ngFor="let error of errors">
+                <div class="col-sm-12 col-md-3">
+                    <label></label>
+                </div>
+                <div class="col-sm-12 col-md-9">
+                    <p>{{error.text}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-3 d-none d-md-inline-block d-lg-inline-block d-xl-inline-block">
+                    <label>&nbsp;</label>
+                </div>
+                <div class="animated flip col-sm-12 col-md-9">
+                    <button class="js--wp-2 btn btn-sm btn-primary btn-full" type="submit">Send it!</button>
+                </div>
+            </div>
+        </form>
+        <div class="container contact-form">
+            <div>
+                <ul class="contacts">
+                    <li><div><a href='#'><i class="ion-logo-whatsapp"></i></a>: +2348123456789</div></li>
+                    <li><div><a href='#'><i class="ion-logo-googleplus"></i></a>: Sommyscatering@gmail.com</div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

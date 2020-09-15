@@ -1,0 +1,42 @@
+<div id="login">
+    <div class="container my-5">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form [formGroup]="registerForm" id="login-form" class="form" (submit)="onRegisterSubmit()">
+                        <h3 class="text-center text-primary">Admin Register</h3>
+                        <div class="form-group">
+                            <label for="name" class="text-primary">Name:</label><br>
+                            <input formControlName="name" type="text" name="name" id="name" class="form-control">
+                            <div *ngIf="registerForm.get('name').invalid && registerForm.get('name').touched">
+                                <small class="text-danger" *ngIf="registerForm.get('name').errors?.required">Enter your name</small>
+                                <small class="text-danger" *ngIf="registerForm.get('name').errors?.minlength">Enter a valid name</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="text-primary">Email:</label><br>
+                            <input formControlName="email" type="email" name="email" id="email" class="form-control">
+                            <div *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">
+                                <small class="text-danger" *ngIf="registerForm.get('email').errors?.required">Email is required</small>
+                                <small class="text-danger" *ngIf="registerForm.get('email').errors?.pattern">Enter a valid email</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-primary">Password:</label><br>
+                            <input formControlName="password" type="password" name="password" id="password" class="form-control">
+                            <small class="text-danger" *ngIf="registerForm.get('password').errors?.required && registerForm.get('password').touched">Password is required</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword" class="text-primary">Confirm Password:</label><br>
+                            <input formControlName="confirmPassword" type="password" name="confirmPassword" id="confirmPassword" class="form-control">
+                            <small class="text-danger" *ngIf="registerForm.errors?.misMatch">Passwords do not match</small>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-full btn-primary" value="Register">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

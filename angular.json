@@ -21,12 +21,27 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/ionicons/dist/scss/ionicons.scss",
+              "src/resources/css/normalize.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/animate.css/animate.min.css",
+              "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/js/jquery.waypoints.min.js",
+              "src/assets/js/script.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -117,8 +132,33 @@
               "devServerTarget": "sommy:serve:production"
             }
           }
+        },
+        "ionic-cordova-serve": {
+          "builder": "@ionic/angular-toolkit:cordova-serve",
+          "options": {
+            "cordovaBuildTarget": "sommy:ionic-cordova-build",
+            "devServerTarget": "sommy:serve"
+          },
+          "configurations": {
+            "production": {
+              "cordovaBuildTarget": "sommy:ionic-cordova-build:production",
+              "devServerTarget": "sommy:serve:production"
+            }
+          }
+        },
+        "ionic-cordova-build": {
+          "builder": "@ionic/angular-toolkit:cordova-build",
+          "options": {
+            "browserTarget": "sommy:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sommy:build:production"
+            }
+          }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "sommy"
 }

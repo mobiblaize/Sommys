@@ -1,0 +1,40 @@
+.gallery-nav {
+    top: 60px;
+}
+
+.products:first-child {
+    padding-top: 50px;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.products-display {
+    width: 100%;
+}
+
+.content-box {
+    padding-bottom: 30px;
+}
+
+.sidebar {
+    overflow: hidden;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9998; /* Behind the navbar */
+    padding: 48px 0 0; /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  }
+
+.products-label {
+    margin-bottom: 0;
+  }
+
+.nav-item:last-child {
+    padding-bottom: 40px;
+}
+

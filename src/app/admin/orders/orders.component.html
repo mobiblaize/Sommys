@@ -1,0 +1,36 @@
+<section class="section-admin">
+    <h2>Orders</h2>
+    <div class="container">
+        <form action="/admin/messages/search" class="search-form">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-8 col-xl-7">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-10 pr-3"><input class="mb-2" [(ngModel)]="query" type="search" name="term" placeholder="Type sender's name"></div>
+                        <div class="col">
+                            <input class="btn btn-sm btn-primary btn-full" type="submit" (click)="searchOrders()" value="Search">
+                        </div> 
+                    </div>
+                </div>  
+            </div>
+        </form>
+
+        <div class="long-copy" *ngIf="!(orders.length>0)">No orders yet</div>
+        <div class="row justify-content-center mt-4" *ngFor="let order of orders">
+            <div class="col-sm-12 col-md-10 col-lg-9">
+                <ul class="list-group pb-2">
+                    <li [class.list-group-item-success]="order.delivered" class="list-group-item"><h3> <span>{{order.name}}</span></h3></li>
+                    <li [class.list-group-item-success]="order.delivered" class="list-group-item">Email: <span>{{order.email}}</span></li>
+                    <li [class.list-group-item-success]="order.delivered" class="list-group-item">Phone: {{order.phone}}</li>
+                    <li [class.list-group-item-success]="order.delivered" class="list-group-item">Location: {{order.location}}</li>
+                    <li [class.list-group-item-success]="order.delivered" class="list-group-item">Pastry: {{order.pastry}}</li>
+                    <li [class.list-group-item-success]="order.delivered" class="list-group-item">Size: {{order.size}}</li>
+                    <li [class.list-group-item-success]="order.delivered" class="list-group-item">Order date: {{order.orderDate | date : 'shortDate'}}</li>
+                    <li [class.list-group-item-success]="order.delivered" class="list-group-item">Delivery-date: {{order.deliveryDate | date : 'shortDate'}}</li>
+                </ul>
+                <form>
+                    <input [ngClass]="order.delivered ? 'btn-success' : 'btn-primary'" class="btn btn-sm btn-full" type="submit" value="Delivered: {{order.delivered}}">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

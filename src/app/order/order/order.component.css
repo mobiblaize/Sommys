@@ -1,0 +1,12 @@
+form .row {
+    margin-top: 10px;
+}
+
+.contacts {
+    list-style: none;
+    padding-top: 20px;
+}
+
+.card {
+    width: auto;
+}

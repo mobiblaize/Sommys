@@ -1,0 +1,32 @@
+<section class="section-admin">
+    <h2>Messages</h2>
+    
+    <div class="container">
+        <form action="/admin/messages/search" class="search-form">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-8 col-xl-7">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-10 pr-3"><input class="mb-2" [(ngModel)]="query" type="search" name="term" placeholder="Type sender's name"></div>
+                        <div class="col">
+                            <input class="btn btn-sm btn-primary btn-full" type="submit" (click)="searchMessage()" value="Search">
+                        </div> 
+                    </div>
+                </div>  
+            </div>
+        </form>
+
+        <div class="long-copy" *ngIf="!(messages.length>0)">No messages yet</div>
+        <div class="row justify-content-center mt-4" *ngFor="let message of messages">
+            <div class="col-sm-12 col-md-10 col-lg-9">
+                <ul class="list-group pb-2">
+                    <li class="list-group-item list-group-item-primary"><h3> <span>{{message.name}}</span></h3></li>
+                    <li class="list-group-item">Email: <span>{{message.email}}</span></li>
+                    <li class="list-group-item">Subscriber: {{message.news}}</li>
+                    <li class="list-group-item">Find us: {{message.findUs}}</li>
+                    <li class="list-group-item">Message: {{message.message}}</li>
+                    <li class="list-group-item">Date: {{message.date | date : 'shortDate'}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

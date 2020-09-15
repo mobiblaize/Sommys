@@ -1,0 +1,114 @@
+header {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.3))), url(../../../resources/css/img/image.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url(../../../resources/css/img/image.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+
+.hero-text-box {
+    position: absolute;
+    max-width: 1140px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/* ------------------------------------------- */
+/* FEATURES*/
+/* ------------------------------------------- */
+
+.section-features {
+    padding-top: 80px;
+}
+
+.section-features .long-copy {
+    margin-bottom: 30px;
+}
+
+.about-box {
+    text-align: center;
+}
+
+.about-box div p {
+    text-align: center;
+}
+
+
+/* ------------------------------------------- */
+/* TESTIMONIALS */
+/* ------------------------------------------- */
+
+.section-testimonials {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.80)), to(rgba(0, 0, 0, 0.80))), url(../../../resources/css/img/vanilla.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(../../../resources/css/img/vanilla.jpg);
+    background-size: cover;
+    color: #fff;
+    background-attachment: fixed;
+}
+
+blockquote {
+    padding: 2%;
+    font-style: italic;
+    line-height: 145%;
+    position: relative;
+}
+
+cite {
+    font-size: 90%;
+    font-weight: 400;
+    margin-top: 25px;
+    display: block;
+    margin-top: 40px;
+}
+
+blockquote:before {
+    content: '\201C';
+    font-size: 500%;
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: -3px;
+}
+
+form .row {
+    margin-top: 10px;
+}
+
+.contact-form {
+    margin: 10px auto;
+}
+
+.contacts {
+    list-style: none;
+    padding-top: 20px;
+}
+
+.contacts li {
+    margin-top: 10px;
+}
+
+.contacts li div {
+    font-weight: 400;
+    vertical-align: middle;
+}
+
+.contacts li a {
+    padding-right: 15px;
+    border: 0;
+    font-size: 150%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.contacts li .ion-logo-whatsapp {
+    color: #075e54;
+}
+
+.contacts li .ion-logo-googleplus {
+    color: #dd4b39;
+}
