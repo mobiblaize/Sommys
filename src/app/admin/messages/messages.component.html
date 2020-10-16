@@ -16,17 +16,8 @@
         </form>
 
         <div class="long-copy" *ngIf="!(messages.length>0)">No messages yet</div>
-        <div class="row justify-content-center mt-4" *ngFor="let message of messages">
-            <div class="col-sm-12 col-md-10 col-lg-9">
-                <ul class="list-group pb-2">
-                    <li class="list-group-item list-group-item-primary"><h3> <span>{{message.name}}</span></h3></li>
-                    <li class="list-group-item">Email: <span>{{message.email}}</span></li>
-                    <li class="list-group-item">Subscriber: {{message.news}}</li>
-                    <li class="list-group-item">Find us: {{message.findUs}}</li>
-                    <li class="list-group-item">Message: {{message.message}}</li>
-                    <li class="list-group-item">Date: {{message.date | date : 'shortDate'}}</li>
-                </ul>
-            </div>
-        </div>
+        <app-message-item 
+        *ngFor="let message of messages" 
+        [message]="message"></app-message-item>
     </div>
 </section>

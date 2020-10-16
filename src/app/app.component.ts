@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
+import { AuthAdminService } from './services/auth-admin.service';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +12,15 @@ export class AppComponent {
   title = 'sommy';
 
   constructor(
-    public authService: AuthService,
+    public authAdminService: AuthAdminService,
     private router: Router,
     private flashMessage: FlashMessagesService
   ) { }
 
   onLogout() {
-    this.authService.logOut();
+    this.authAdminService.logOut();
     this.flashMessage.show( 'You are logged out', {
-      cssClass: 'alert-success',
+      cssClass: 'alert-success mb-0',
       timeOut: 3000 
     });
     this.router.navigate(['admin/login']);

@@ -1,0 +1,58 @@
+<div class="row edit-post">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="row card">
+            <div class="col-sm-12">
+                <h4>Edit Post</h4>                
+                <button class="btn btn-lg btn-link float-right nav-link"  routerLink="/admin/posts">My Posts</button>
+                <div>
+                    <div class="row uploadList" *ngFor="let image of post.images; let i=index">
+                        <div class="col-sm-4">
+                            {{image}}
+                            <div class="col-sm-4 pb-2 pt-1">
+                                <button type="button" class="btn btn-danger" (click)="removeOldFile(i)">Remove</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <img class="img-fluid" src="../../../assets/posts/{{post.images[i]}}"><br/>
+                        </div>
+                    </div>                        
+                </div>
+
+                <div>
+                    <div class="row uploadList" *ngFor="let item of multipleImages; let i=index">
+                        <div class="col-sm-4">
+                            {{item.name}}
+                            <div class="col-sm-4 pb-2 pt-1">
+                                <button type="button" class="btn btn-danger" (click)="removeFile(i)">Remove</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <img class="img-thumbnail" [src]="images[i]"><br/>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="fileSelector">
+                    <input class="d-none" #chooseFile name="myFiles" id="myFiles" multiple type="file" (change)="onSelect($event)">
+                    <button type="button" class="btn btn-sm btn-secondary" (click)="chooseFile.click()">Add Images</button>
+                </div>
+                <div class="form-group mt-2">
+                    <label>Post title</label>
+                    <input type="text" [(ngModel)]="post.title" name="title" placeholder="Post title">
+                </div> 
+                <div class="form-group">
+                    <label>Body</label>
+                    <textarea [(ngModel)]="post.body" name="message" placeholder="Post body" rows="4"></textarea>
+                </div>
+                <div class="progress mb-2">
+                    <div class="progress-bar bg-success" 
+                    [ngStyle]="{'width':completion+'%'}"></div>
+                </div>
+                <div class="row">
+                        <button type="button" class="btn btn-primary" (click)="onSubmit(editPost)" #editPost>Update Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

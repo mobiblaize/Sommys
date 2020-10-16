@@ -16,168 +16,23 @@
               {{pastry.name}}
             </a>
             <nav class="nav nav-pills flex-column" *ngFor="let type of pastry.types">
-              <a class="nav-link py-0 my-1 btn-sm text-secondary">{{type}}</a>
+              <a class="nav-link py-0 my-1 btn-sm text-secondary" *ngIf="pastry.types.length > 1">{{type.name}}</a>
             </nav>
           </li>
         </ul>
-
       </div>
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="container">
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 #Cake id="Cake" class="primary products-main-title text-primary">cake</h3>
-          
+        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0" *ngFor="let pastry of pastries; let i=index">
+          <h3 #{{pastry.name}} id="{{pastry.name}}" class="primary products-main-title text-primary">{{pastry.name}}</h3>
           <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/sponge.jpg" class="products-display" alt="SOFT SPONGE CAKE">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('sponge-cake')">SOFT SPONGE CAKE</p>
-            </div>
-      
-            <div class="col-sm-12 col-md-4 content-box">
-            <img src="assets/img/RED-VELVET.jpg" class="products-display" alt="RED VELVET CAKE">
-            <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('velvet-cake')">RED VELVET CAKE</p>
-            </div>
-            
-            <div class="col-sm-12 col-md-4 content-box">
-            <img src="assets/img/chocolate.jpg" class="products-display" alt="CHOCOLATE CAKE">
-            <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('chocolate-cake')">CHOCOLATE CAKE</p>
-            </div>
-            
-            <div class="col-sm-12 col-md-4 content-box">
-            <img src="assets/img/vanilla.jpg" class="products-display" alt="VANILLA CAKE">
-            <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('vanilla-cake')">VANILLA CAKE</p>
-            </div>
-            
-            <div class="col-sm-12 col-md-4 content-box">
-            <img src="assets/img/fondant.jpg" class="products-display" alt="FONDANT CAKE">
-            <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('fondant-cake')">FONDANT CAKE</p>
-            </div>
-            
-            <div class="col-sm-12 col-md-4 content-box">
-            <img src="assets/img/butter.jpg" class="products-display" alt="BUTTER CAKE">
-            <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('butter-cake')">BUTTER CAKE</p>
+            <div class="col-sm-12 col-md-4 content-box" *ngFor="let type of pastry.types; let j=index">
+              <img src="assets/img/{{type.image}}" class="products-display" alt="SOFT SPONGE CAKE">
+              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect(i, j)">{{type.name.toUpperCase()}}</p>
             </div>      
           </div>
-          
-        </div>
-
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Meat-pie" class="primary products-main-title text-primary">Meat pie</h3>
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/meatpie.jpg" class="products-display" alt="MEAT PIE">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('meat-pie')">MEAT PIE</p>
-            </div>     
-          </div>
-        </div>
-
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Samosa" class="primary products-main-title text-primary">Samosa</h3>
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/samosa.jpg" class="products-display" alt="SAMOSA">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('samosa')">SAMOSA</p>
-            </div>     
-          </div>
-        </div>
-
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Puff-puff" class="primary products-main-title text-primary">Puff puff</h3>
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/puff-puff.jfif" class="products-display" alt="PUFF PUFF">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('Puff-puff')">PUFF PUFF</p>
-            </div>     
-          </div>
-        </div>
-
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Chin-chin" class="primary products-main-title text-primary">Chin chin</h3>
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/short-chin-chin.jpg" class="products-display" alt="SHORT CHIN CHIN">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('short-chin')">SHORT CHIN CHIN</p>
-            </div>
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/long-chin-chin.jpg" class="products-display" alt="LONG CHIN CHIN">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('long-chin')">LONG CHIN CHIN</p>
-            </div> 
-          </div>        
-        </div>
-
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Peanuts" class="primary products-main-title text-primary">Peanuts</h3>          
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/peanut-burger-recipe.jpg" class="products-display" alt="PEANUTS">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('peanuts')">PEANUTS</p>
-            </div>     
-          </div>
-        </div>
-
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Sausage" class="primary products-main-title text-primary">Sausage</h3>          
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/sausage.jpg" class="products-display" alt="SAUSAGE">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('sausage')">SAUSAGE</p>
-            </div>     
-          </div>
-          
-        </div>
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Pizza" class="primary products-main-title text-primary">Pizza</h3>
-          
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/pizza.png" class="products-display" alt="PIZZA">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('pizza')">PIZZA</p>
-            </div>     
-          </div>
-          
-        </div>
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Butter-cookies" class="primary products-main-title text-primary">Butter cookies</h3>
-          
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/Butter_Cookies.jpg" class="products-display" alt="BUTTER COOKIES">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('butter-cookies')">BUTTER COOKIES</p>
-            </div>     
-          </div>
-          
-        </div>
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Bread-pizza" class="primary products-main-title text-primary">Bread pizza</h3>
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/bread-pizza.jpg" class="products-display" alt="BREAD PIZZA">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('bread-pizza')">BREAD PIZZA</p>
-            </div>     
-          </div>          
-        </div>
-
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Bread" class="primary products-main-title text-primary">Bread</h3>
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/bread.jpg" class="products-display" alt="BREAD">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('bread')">BREAD</p>
-            </div>     
-          </div>
-          
-        </div>
-        <div class="products" data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-          <h3 id="Pop-corn" class="primary products-main-title text-primary">Pop corn</h3>
-          <div class="row">
-            <div class="col-sm-12 col-md-4 content-box">
-              <img src="assets/img/pop-corn.jpg" class="products-display" alt="POP CORN">
-              <p class="btn btn-md btn-outline-primary w-100 mt-1" (click)="onSelect('pop-corn')">POP CORN</p>
-            </div>     
-          </div>
-          
         </div>
       </div>
     </main>

@@ -15,7 +15,7 @@
         </form>
 
         <div class="long-copy" *ngIf="!(orders.length>0)">No orders yet</div>
-        <div class="row justify-content-center mt-4" *ngFor="let order of orders">
+        <div class="row justify-content-center mt-4" *ngFor="let order of orders; let i=index">
             <div class="col-sm-12 col-md-10 col-lg-9">
                 <ul class="list-group pb-2">
                     <li [class.list-group-item-success]="order.delivered" class="list-group-item"><h3> <span>{{order.name}}</span></h3></li>
@@ -28,7 +28,7 @@
                     <li [class.list-group-item-success]="order.delivered" class="list-group-item">Delivery-date: {{order.deliveryDate | date : 'shortDate'}}</li>
                 </ul>
                 <form>
-                    <input [ngClass]="order.delivered ? 'btn-success' : 'btn-primary'" class="btn btn-sm btn-full" type="submit" value="Delivered: {{order.delivered}}">
+                    <input class="btn btn-sm btn-full" [ngClass]="order.delivered ? 'btn-success' : 'btn-primary'" (click)="delivered(i, deliverBtn)" #deliverBtn type="submit" [value]="order.delivered ? 'Delivered' : 'Pending'">
                 </form>
             </div>
         </div>

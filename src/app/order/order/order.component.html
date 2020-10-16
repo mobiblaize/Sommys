@@ -3,10 +3,10 @@
     <div class="row justify-content-center">
         <h2>Place an order for our delicacies</h2>
         <p class="long-copy col-sm-12 col-md-11 col-lg-9 col-lg-auto">
-            After placing your order, please endeavour to contact us via one of the channels listed below for price negotiation and payment.
+            After placing your order, please endeavour to contact us via whatsapp or email listed below for price negotiation and payment.
         </p>
     </div>
-        <form [formGroup]="orderForm" class="contact-form col-xs-12 col-sm-12 col-md-10 col-lg-9 mx-auto" (ngSubmit)='onSubmit()'>
+        <form [formGroup]="orderForm" class="contact-form col-xs-12 col-sm-12 col-md-10 col-lg-9 mx-auto" (ngSubmit)='onSubmit(orderBtn)'>
             <div class="row">
                 <div class="col-sm-12 col-md-3">
                     <label for="name">Name</label>
@@ -26,8 +26,8 @@
                 <div class="col-sm-12 col-md-9">
                     <input formControlName="phone" type="tel" name="phone" id="phone" placeholder="Your Phone no" required>
                     <div *ngIf="orderForm.get('phone').invalid && orderForm.get('phone').touched">
-                        <small class="text-danger" *ngIf="orderForm.get('phone').errors?.required">please enter your phonenumber</small>
-                        <small class="text-danger" *ngIf="orderForm.get('phone').errors?.minlength">Enter a valid phonenumber</small>
+                        <small class="text-danger" *ngIf="orderForm.get('phone').errors?.required">Please enter your phone number</small>
+                        <small class="text-danger" *ngIf="orderForm.get('phone').errors?.minlength">Enter a valid phone number</small>
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                     <label>&nbsp;</label>
                 </div>
                 <div class="col span-2-of-3">
-                    <input class="btn btn-sm btn-primary btn-full js--wp-1" type="submit" value="Order now!">
+                    <input class="btn btn-sm btn-primary btn-full js--wp-1" type="submit" #orderBtn value="Order now!">
                 </div>
             </div>
         </form>

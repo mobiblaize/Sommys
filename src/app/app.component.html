@@ -1,5 +1,5 @@
 <div class="sticky-top main-top">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary main-nav">
+    <nav  *ngIf="!authAdminService.loggedIn()" class="navbar navbar-expand-lg navbar-dark bg-primary main-nav">
         <div class="container">
             <a class="navbar-brand page-title" routerLink="">Sommy's 
                 <span class="d-none d-md-inline">Cakes and</span>
@@ -12,39 +12,56 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li *ngIf="!authService.loggedIn()" class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/home" routerLinkActive="active" class="nav-link">Home</a>
                     </li>
-                    <li *ngIf="!authService.loggedIn()" class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/gallery" routerLinkActive="active" class="nav-link">Products gallery</a>
                     </li>
-                    <li *ngIf="!authService.loggedIn()" class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/order" routerLinkActive="active" class="nav-link">Order</a>
                     </li>
-                    <li *ngIf="!authService.loggedIn()" class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/master" routerLinkActive="active" class="nav-link">Master course</a>
-                    </li>
-                    <li *ngIf="authService.loggedIn()" class="nav-item">
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav *ngIf="authAdminService.loggedIn()" class="navbar navbar-expand-lg navbar-dark bg-primary main-nav">
+        <div class="container">
+            <a class="navbar-brand page-title" routerLink="">Sommy's 
+                <span class="d-none d-md-inline">Cakes and</span>
+                <span class="break-nm"> Confectioneries</span>
+                <span class="break-sm"><br/>Confectioneries</span>
+            </a>
+          
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
                         <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions] = "{exact:true}" class="nav-link">Home</a>
                     </li>
-                    <li *ngIf="authService.loggedIn()" class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/admin/messages" routerLinkActive="active" class="nav-link">messages</a>
                     </li>
-                    <li *ngIf="authService.loggedIn()" class="nav-item">
+                    <li class="nav-item">
                         <a routerLink="/admin/orders" routerLinkActive="active" class="nav-link">Orders</a>
                     </li>
-                    <li *ngIf="authService.loggedIn()" class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" style="cursor: pointer;" (click)="onLogout()">logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <ng-progress id="myProgress"></ng-progress>
     <flash-messages></flash-messages>
 </div>
 
 <router-outlet></router-outlet>
-<footer *ngIf="!authService.loggedIn()">
+<footer *ngIf="!authAdminService.loggedIn()">
     <div class="row">
         <div class='col span-1-of-2'>
             <ul class="footer-nav">
@@ -56,7 +73,7 @@
         </div>
         <div class='col span-1-of-2'>
             <ul class="social-links">
-                <li><a href='#'><i class="ion-logo-whatsapp"></i></a></li>
+                <li><a href='https://api.whatsapp.com/send?phone=08123456789'><i class="ion-logo-whatsapp"></i></a></li>
                 <li><a href='#'><i class="ion-logo-facebook"></i></a></li>
                 <li><a href='#'><i class="ion-logo-twitter"></i></a></li>
                 <li><a href="mailto:sommyscatering@gmail.com?subject = Feedback&body = Message"><i class="ion-logo-googleplus"></i></a></li>
@@ -71,7 +88,7 @@
     </div>
 </footer>
 
-<footer *ngIf="authService.loggedIn()">
+<footer *ngIf="authAdminService.loggedIn()">
     <div class="row">
         <div class='col span-1-of-2'>
             <ul class="footer-nav">
@@ -83,7 +100,7 @@
         </div>
         <div class='col span-1-of-2'>
             <ul class="social-links">
-                <li><a href='#'><i class="ion-logo-whatsapp"></i></a></li>
+                <li><a href="https://api.whatsapp.com/send?phone=08123456789"><i class="ion-logo-whatsapp"></i></a></li>
                 <li><a href='#'><i class="ion-logo-facebook"></i></a></li>
                 <li><a href='#'><i class="ion-logo-twitter"></i></a></li>
                 <li><a href="mailto:sommyscatering@gmail.com?subject = Feedback&body = Message"><i class="ion-logo-googleplus"></i></a></li>

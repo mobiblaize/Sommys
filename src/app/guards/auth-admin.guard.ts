@@ -19,5 +19,4 @@ export class AuthAdminGuard implements CanActivate {
       return false;
     }
   }
-  
 }

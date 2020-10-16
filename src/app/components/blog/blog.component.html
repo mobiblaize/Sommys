@@ -1,0 +1,14 @@
+<section class="section-blog" *ngIf="posts.length > 0">
+    <h2>Blog</h2>
+    <div class="container">
+        <app-post [post]="blogPost"></app-post>
+        <div class="row d-flex justify-content-center" *ngIf="posts.length > 0">
+            <div class="col pl-lg-5">
+                <button *ngIf="index > 0" [disabled]="index <= 0" class="ml-lg-5 float-left btn btn-sm btn-full btn-link nav-link" (click)="previousPost()">newer</button>
+            </div>
+            <div class="col pr-lg-5">
+                <button *ngIf="index < posts.length-1" [disabled]="index >= posts.length-1" class="mr-lg-5 float-right btn btn-sm btn-full btn-link nav-link" (click)="nextPost()">older</button>
+            </div>
+        </div>
+    </div>
+</section>

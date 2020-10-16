@@ -1,22 +1,33 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpInterceptor } from '@angular/common/http';
-import { AuthService } from './auth.service';
+import { AuthAdminService } from './auth-admin.service';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class TokenInterceptorService implements HttpInterceptor {
 
-
-  constructor(private injector: Injector) { }
+  constructor(private authService: AuthAdminService) { }
   
   intercept(req, next) {
-    let authService = this.injector.get(AuthService);
-    let tokenizedReq = req.clone ({
-      setHeaders: {
-        Authorization: `JWT ${authService.getToken()}`
-      }
-    });
-    return next.handle(tokenizedReq);
+    // let authAdminService = this.injector.get(AuthAdminService);
+    let authToken = this.authService.getToken();
+    
+    if (authToken !== null ) {
+      let tokenizedReq = req.clone ({
+        setHeaders: {
+          Authorization: authToken
+        }
+      });
+      return next.handle(tokenizedReq);
+    } else {
+      let tokenizedReq = req.clone ({
+        setHeaders: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return next.handle(tokenizedReq);
+    }
   }
 }

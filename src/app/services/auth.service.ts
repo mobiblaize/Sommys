@@ -9,64 +9,56 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
+  backend = 'http://localhost:3001/';
   authToken: any;
   user: any;
 
   loadToken() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('a_token');
     this.authToken = token;
   }
 
+  getPosts():Observable<any> {
+    return this.http.get(`${this.backend}posts`);
+  }
+
   sendMessage(message):Observable<any> {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3001/message', message, {headers});
+    return this.http.post(`${this.backend}message`, message);
   }
 
   placeOrder(order):Observable<any> {
-    let headers = new HttpHeaders().append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3001/order', order, {headers});
+    return this.http.post(`${this.backend}order`, order);
   }
 
   getOrders():Observable<any> {
-    this.loadToken();
-    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3001/admin/orders', {headers});
+    return this.http.get(`${this.backend}admin/orders`);
   }
 
   getMessages():Observable<any> {
-    this.loadToken();
-    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3001/admin/messages', {headers});
+    return this.http.get(`${this.backend}admin/messages`);
   }
 
   searchOrders(query):Observable<any> {
-    this.loadToken();
-    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3001/admin/orders/search', query, {headers});
+    return this.http.post(`${this.backend}admin/orders/search`, query);
+  }
+
+  deliverOrder(order):Observable<any> {
+    return this.http.post(`${this.backend}admin/orders/delivered`, order);
   }
 
   searchMessages(query):Observable<any> {
-    this.loadToken();
-    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3001/admin/messages/search', query, {headers});
+    return this.http.post(`${this.backend}admin/messages/search`, query);
   }
 
   getProfile():Observable<any> {
-    this.loadToken();
-    let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3001/admin', {headers});
+    return this.http.get(`${this.backend}admin`);
   }
 
   adminLogin(user):Observable<any> {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3001/admin/login', user, {headers});
+    return this.http.post(`${this.backend}admin/login`, user);
   }
   adminRegister(user):Observable<any> {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3001/admin/register', user, {headers});
+    return this.http.post(`${this.backend}admin/register`, user);
   }
 
   loggedIn() {

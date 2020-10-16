@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthAdminService } from 'src/app/services/auth-admin.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -15,7 +15,7 @@ export class AdminLoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    private authService: AuthAdminService,
     private router: Router,
     private flashMessage: FlashMessagesService
   ) { }
@@ -37,8 +37,8 @@ export class AdminLoginComponent implements OnInit {
     }
     this.authService.adminLogin(this.loginForm.value).subscribe(data => {
       if (data.success) {
-        localStorage.setItem('token', data.token);
-        this.flashMessage.show ('You are logged in', {cssClass: 'alert-success', timeout: 3000});
+        localStorage.setItem('a_token', data.token);
+        this.flashMessage.show ('You are logged in', {cssClass: 'alert-success mb-0', timeout: 3000});
         this.router.navigate(['/admin']);
       }   
       if (!data.success) {
@@ -51,5 +51,4 @@ export class AdminLoginComponent implements OnInit {
       return false
     });
   }
-
 }

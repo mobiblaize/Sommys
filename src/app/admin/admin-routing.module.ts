@@ -13,7 +13,12 @@ const routes: Routes = [
   { path: 'messages', component: MessagesComponent, canActivate: [AuthAdminGuard] },
   { path: 'orders', component: OrdersComponent, canActivate: [AuthAdminGuard] },
   { path: 'login', component: AdminLoginComponent },
-  { path: 'register', component: AdminRegisterComponent, canActivate: [AuthAdminGuard] }
+  { path: 'register', component: AdminRegisterComponent, canActivate: [AuthAdminGuard] },
+  {
+    path: 'posts',
+    loadChildren: () => import('../admin/post/post.module').then(m => m.PostModule), 
+    canActivate: [AuthAdminGuard]
+  },
 ];
 
 @NgModule({

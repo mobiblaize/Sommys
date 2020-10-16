@@ -1,0 +1,8 @@
+<div class="text-center">
+    <img class="img-fluid" src="../../../assets/posts/{{post.images[imgIndex]}}">
+    <div *ngIf="post.images.length > 1">
+        <button class="btn btn-link text-secondary pr-0" role="button" (click)="previousImage()" [disabled]="imgIndex <= 0"><i class="icon-nav ion-ios-arrow-back-outline"></i><i class="icon-nav ion-ios-arrow-back-outline"></i>previous</button>   |   <button class="btn btn-link text-secondary pl-0" role="button" (click)="nextImage()" [disabled]="imgIndex >= post.images.length-1">next<i class="icon-nav ion-ios-arrow-forward-outline"></i><i class="icon-nav ion-ios-arrow-forward-outline"></i></button>
+    </div>
+    <div class="mt-3 text-center"><h3>{{post.title}}</h3></div>
+    <p class="long-copy mx-auto text-center col-sm-12 col-md-11 col-lg-9 col-lg-auto">{{post.body}}</p>
+</div>

@@ -47,12 +47,14 @@
     </div>  
 </section>
 
+<app-blog></app-blog>
+
 <section class="section-form js--section-2">
     <div class="row">
         <h2>We're happy to hear from you</h2>
     </div>
     <div class="container">
-        <form [formGroup]="contactForm" class='contact-form col-xs-12 col-sm-12 col-md-10 col-lg-9' (ngSubmit)='onSubmit()'>
+        <form [formGroup]="contactForm" class='contact-form col-xs-12 col-sm-12 col-md-10 col-lg-9' (ngSubmit)='onSubmit(msgBtn)'>
             <div class="row">
                 <div class="col-sm-12 col-md-3">
                     <label for="name">Name</label>
@@ -107,7 +109,7 @@
                     <label>Drop us a line</label>
                 </div>
                 <div class="col-sm-12 col-md-9">
-                    <textarea formControlName="message" name="message" placeholder="Your message"></textarea>
+                    <textarea formControlName="message" name="message" placeholder="Your message" rows="4"></textarea>
                     <small class="text-danger" 
                     [class.d-none]="contactForm.get('message').valid || contactForm.get('message').untouched">
                     You haven't written your message</small>
@@ -126,7 +128,7 @@
                     <label>&nbsp;</label>
                 </div>
                 <div class="animated flip col-sm-12 col-md-9">
-                    <button class="js--wp-2 btn btn-sm btn-primary btn-full" type="submit">Send it!</button>
+                    <button class="js--wp-2 btn btn-sm btn-primary btn-full" type="submit" #msgBtn>Send it!</button>
                 </div>
             </div>
         </form>
