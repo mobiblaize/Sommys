@@ -45,12 +45,12 @@ export class AuthAdminService {
     return this.http.post(`${this.backend}admins/post/delete`, post, );
   }
 
-  getOrders():Observable<any> {
-    return this.http.get(`${this.backend}admins/orders`, );
+  getOrders(size):Observable<any> {
+    return this.http.post(`${this.backend}admins/orders`, size );
   }
 
-  getMessages():Observable<any> {
-    return this.http.get(`${this.backend}admins/messages`, );
+  getMessages(size):Observable<any> {
+    return this.http.post(`${this.backend}admins/messages`, size );
   }
 
   searchOrders(query):Observable<any> {

@@ -65,7 +65,7 @@ export class BlogComponent implements OnInit {
           this.completion = Math.round(event.loaded/event.total * 100)
           console.log('upload progress: ' + Math.round(event.loaded/event.total * 100) + ' %');
         } else if (event.type == HttpEventType.Response ) {
-          this.flashMessage.show (event.body.message, {cssClass: 'alert-success mb-0', timeout: 3000});
+          this.flashMessage.show (event.body.message, {cssClass: 'alert-success mb-0', timeout: 5000});
           this.multipleImages = [];
           this.images = [];
           this.title =  '';

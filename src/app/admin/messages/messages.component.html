@@ -16,8 +16,11 @@
         </form>
 
         <div class="long-copy" *ngIf="!(messages.length>0)">No messages yet</div>
-        <app-message-item 
+        <app-message-item
         *ngFor="let message of messages" 
         [message]="message"></app-message-item>
+        <div class="text-center">
+            <button *ngIf="moreBtnActive" class="btn btn-secondary mt-2" (click)="moreMessages()">More</button>
+        </div>
     </div>
 </section>

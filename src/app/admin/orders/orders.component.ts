@@ -14,6 +14,7 @@ export class OrdersComponent implements OnInit {
 
   orders = [];
   query = '';
+  moreBtnActive = false;
 
   progressRef: NgProgressRef;
   constructor(
@@ -25,8 +26,12 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.progressRef = this.progress.ref('myProgress');
-    this.authAdminService.getOrders().subscribe(data => {
-      this.orders = data.orders;
+    this.moreBtnActive = true;
+    this.authAdminService.getOrders({ size: this.orders.length }).subscribe(data => {
+      this.orders =  this.orders.concat(data.orders);
+      if ( data.orders.length == 0 ) {
+        this.moreBtnActive = false;
+      }
     }, err => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
@@ -36,12 +41,14 @@ export class OrdersComponent implements OnInit {
       console.log(err); 
     });
   }
+  
   searchOrders() {
     let query = {query : this.query};
     this.progressRef.start();      
     this.authAdminService.searchOrders(query).subscribe(data => {
       this.orders = data.orders;
       this.progressRef.complete();
+      this.moreBtnActive = false;
     }, err => {
       console.log(err);
       this.progressRef.complete();
@@ -70,6 +77,22 @@ export class OrdersComponent implements OnInit {
       console.log(err);
       this.progressRef.complete();
       submitBtn.disabled  = false;
+      if (err instanceof HttpErrorResponse) {
+        if (err.status === 401) {
+          this.router.navigate(['/admin/login']);
+        }
+      }
+    });
+  }
+
+  moreOrders() {
+    this.authAdminService.getOrders({ size: this.orders.length }).subscribe(data => {
+      this.orders =  this.orders.concat(data.orders);      
+      if ( data.orders.length == 0 ) {
+        this.moreBtnActive = false;
+      }
+    }, err => {
+      console.log(err);
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
           this.router.navigate(['/admin/login']);

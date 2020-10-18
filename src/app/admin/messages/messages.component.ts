@@ -14,6 +14,7 @@ export class MessagesComponent implements OnInit {
 
   messages:Message[] = [];
   query = '';
+  moreBtnActive = false;
 
   progressRef: NgProgressRef;
   constructor(
@@ -24,8 +25,12 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.progressRef = this.progress.ref('myProgress');
-    this.authService.getMessages().subscribe(data => {
-      this.messages = data.messages;
+    this.moreBtnActive = true;
+    this.authService.getMessages({ size: this.messages.length }).subscribe(data => {
+      this.messages =  this.messages.concat(data.messages);      
+      if ( data.messages.length == 0 ) {
+        this.moreBtnActive = false;
+      }
     }, err => {
       console.log(err);
       if (err instanceof HttpErrorResponse) {
@@ -51,6 +56,22 @@ export class MessagesComponent implements OnInit {
         }
       }
     })
+  }
+
+  moreMessages() {
+    this.authService.getMessages({ size: this.messages.length }).subscribe(data => {
+      this.messages =  this.messages.concat(data.messages);      
+      if ( data.messages.length == 0 ) {
+        this.moreBtnActive = false;
+      }
+    }, err => {
+      console.log(err);
+      if (err instanceof HttpErrorResponse) {
+        if (err.status === 401) {
+          this.router.navigate(['/admin/login']);
+        }
+      }
+    });
   }
 
 }
