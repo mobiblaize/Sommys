@@ -59,6 +59,7 @@ export class BlogComponent implements OnInit {
     formData.append('body', this.body);
 
     submitBtn.disabled = true;
+    this.completion = 0;
     this.authService.addPost(formData).subscribe(
       (event) => {
         if (event.type == HttpEventType.UploadProgress ) {
@@ -70,7 +71,6 @@ export class BlogComponent implements OnInit {
           this.images = [];
           this.title =  '';
           this.body= '' ;
-          this.completion = 0;
           submitBtn.disabled  = false;
         }
       },
