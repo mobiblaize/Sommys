@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthAdminService {
 
   constructor( private http: HttpClient ) { }
 
-  backend = 'http://localhost:3001/';
+  backend = `${environment.BaseUrl}`;
   authToken: any;
   user: any;
 
@@ -18,7 +19,7 @@ export class AuthAdminService {
     const token = localStorage.getItem('a_token');
     this.authToken = token;
   }
-  
+
   addPost(formData) {
     return this.http.post<any>(`${this.backend}admins/post/add`, formData, {
       reportProgress: true,
@@ -46,11 +47,12 @@ export class AuthAdminService {
   }
 
   getOrders(size):Observable<any> {
-    return this.http.post(`${this.backend}admins/orders`, size );
+    return this.http.get(`${this.backend}admins/orders`, size );
   }
 
   getMessages(size):Observable<any> {
-    return this.http.post(`${this.backend}admins/messages`, size );
+    console.log(this.backend);
+    return this.http.get(`${this.backend}admins/messages`, size );
   }
 
   searchOrders(query):Observable<any> {
